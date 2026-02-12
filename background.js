@@ -51,8 +51,9 @@ function isAllowedUrl(url) {
  */
 function handleNewWindow(window) {
   // Only target app-type windows (created by "Install Page as App")
-  // "app" = PWA/web app windows, "popup" = some app windows use this type
-  if (window.type !== "app" && window.type !== "popup") {
+  // We intentionally do NOT target "popup" windows, as those are used by
+  // OAuth login flows, educational tools, and other legitimate browser features.
+  if (window.type !== "app") {
     return;
   }
 
